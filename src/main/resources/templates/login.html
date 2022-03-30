@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+
+        <!-- Header Start -->
+    <head th:insert="common/header :: header"></head>
+    <!-- Header End -->
+
+    <!-- Navbar Start -->
+    <!--<head th:insert="common/header :: navbar"></head>-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-dark bg-dark" data-th-fragment="navbar">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                <a class="navbar-brand" href="#"><i class="fas fa-home"></i> FaceUTEQ</a>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+
+    <div class="container-fluid" style="margin-left: -12px;">
+        <div class="row">
+            <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+                <div class="col-xl-12 col-lg-12 col-md-12 mt-5">
+                    <div class="card shadow-lg p-3 mb-5 bg-white">
+                        <h3>Sistema de autenticación</h3>
+                        <br>
+                        <div style="background: linear-gradient(to right, #011B6A, #34A9F0); -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px;" class="text-white">
+                            <h5 class="text-white mt-1">Inicia sesión utilizando tu correo electrónico</h5>
+                        </div>
+                        <div class="card-body">
+                            <div id="alerta"></div>
+                            <form method="post" th:action="@{/login}" th:object="${user}">
+                                <div class="row g-3">
+                                    <div class="col-12">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="username" id="username">
+                                            <label for="subject">Correo electrónico</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="password" id="password">
+                                            <label for="subject">Contraseña</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <button class="btn btn-primary w-25" type="submit">Acceder</button>
+                                    </div>
+                                </div>
+                                <br><br>
+                                <a style="float: left;">Registrar cuenta</a>
+                                <br><br>
+                                <a>¿Olvidaste tu contraseña?</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--<table>
+        <thead>
+        <th>ID</th>
+        <th>ID Profesor</th>
+        <th>ID Estudiante</th>
+        <th>Tipo de usuario</th>
+        <th>Email</th>
+        <th>Fecha de alta</th>
+        <th>Fecha última modificación</th>
+    </thead>
+    <tr data-th-each="d:${usuarios}">
+        <td data-th-text="${d.id_usua}"></td>
+        <td data-th-text="${d.id_prof}"></td>
+        <td data-th-text="${d.id_estu}"></td>
+        <td data-th-text="${d.tipo_usua}"></td>
+        <td data-th-text="${d.email_usua}"></td>
+        <td data-th-text="${d.fa_usua}"></td>
+        <td data-th-text="${d.fum_usua}"></td>
+    </tr>
+</table>-->
+
+    <!-- Footer Start -->
+    <head th:insert="common/footer :: footer"></head>
+    <!-- Footer End -->
+
+</body>
+</html>
