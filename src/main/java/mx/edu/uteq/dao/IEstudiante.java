@@ -5,7 +5,9 @@
  */
 package mx.edu.uteq.dao;
 
-import mx.edu.uteq.domain.Usuario;
+import mx.edu.uteq.domain.Estudiante;
+import mx.edu.uteq.domain.Profesor;
+import mx.edu.uteq.domain.Publicacion;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -14,6 +16,6 @@ import org.springframework.stereotype.Repository;
  * @author Ricardo
  */
 @Repository
-public interface IUsuario extends JpaRepository<Usuario, Long>{
-    public Usuario findByEmailUsua(String emailUsua);
+public interface IEstudiante extends JpaRepository<Estudiante, Long>{
+    
 }

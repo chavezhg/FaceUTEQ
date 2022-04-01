@@ -29,13 +29,15 @@ public class Usuario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long idUsua;
-    @Column(name = "id_prof", nullable = true)
-    public int idProf;
-    @Column(name = "id_estu", nullable = true)
-    public int idEstu;
     @OneToOne
-    @JoinColumn(name = "id_rol")
+    @JoinColumn(name = "id_rol", nullable = false)
     public Rol rol;
+    @OneToOne
+    @JoinColumn(name = "id_estu", nullable = true)
+    public Estudiante estudiante;
+    @OneToOne
+    @JoinColumn(name = "id_prof", nullable = true)
+    public Profesor profesor;
     @Column(name = "email_usua", nullable = false)
     public String emailUsua;
     @Column(name = "pass_usua", nullable = false)

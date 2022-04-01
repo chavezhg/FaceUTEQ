@@ -11,6 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import lombok.Data;
@@ -21,19 +23,31 @@ import lombok.Data;
  */
 @Data
 @Entity
-@Table(name = "rol")
-public class Rol implements Serializable {
+@Table(name = "estudiante")
+public class Estudiante implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idRol;
-    
-    @Column(name = "nom_rol", nullable = false)
-    private String nomRol;
-    
-    @Column(name = "fa_rol", nullable = false)
-    private String faRol;
-    
-    @Column(name = "fum_rol", nullable = false)
-    private String fumRol;
+    private Long idEstu;
+    @ManyToOne
+    @JoinColumn(name = "id_carr", nullable = false)
+    public Carrera carrera;
+    @Column(name = "n1_estu", nullable = false)
+    private String n1Estu;
+    @Column(name = "n2_estu", nullable = false)
+    private String n2Estu;
+    @Column(name = "ap_estu", nullable = false)
+    private String apEstu;
+    @Column(name = "am_estu", nullable = false)
+    private String amEstu;
+    @Column(name = "ecivil_estu", nullable = false)
+    private String ecivilEstu;
+    @Column(name = "fnac_estu", nullable = false)
+    private String fnacEstu;
+    @Column(name = "lnac_estu", nullable = false)
+    private String lnacEstu;
+    @Column(name = "fa_estu", nullable = false)
+    private String faEstu;
+    @Column(name = "fum_estu", nullable = true)
+    private String fumEstu;
 }

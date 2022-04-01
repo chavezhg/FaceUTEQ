@@ -1,6 +1,7 @@
 package mx.edu.uteq.domain;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,25 +25,19 @@ import org.springframework.lang.Nullable;
 
 @Data
 @Entity
-@Table(name = "usuario")
-public class Usuario implements Serializable {
+@Table(name = "publicacion")
+public class Publicacion implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long idUsua;
-    @Column(name = "id_prof", nullable = true)
-    public int idProf;
-    @Column(name = "id_estu", nullable = true)
-    public int idEstu;
-    @OneToOne
-    @JoinColumn(name = "id_rol")
-    public Rol rol;
-    @Column(name = "email_usua", nullable = false)
-    public String emailUsua;
-    @Column(name = "pass_usua", nullable = false)
-    public String passUsua;
-    @Column(name = "fa_usua", nullable = false)
-    public String faUsua;
-    @Column(name = "fum_usua", nullable = true)
-    public String fumUsua;
-
+    public Long idPubl;
+    @Column(name = "desc_publ", nullable = false)
+    public String descPubl;
+    @ManyToOne
+    @JoinColumn(name = "id_usua", nullable = false)
+    public Usuario usuario;
+    @Column(name = "fa_publ", nullable = false)
+    public Date faPubl;
+    @Column(name = "fum_publ", nullable = true)
+    public Date fumPubl;
+    
 }
