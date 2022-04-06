@@ -1,53 +1,89 @@
 <head data-th-fragment="header">
-    <meta charset="utf-8">
-    <title>FaceUTEQ</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="" name="keywords">
-    <meta content="" name="description">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
 
-    <!-- Favicon -->
-    <link th:href="@{static/img/favicon.ico}" rel="icon">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/static/css/styles.css}">
 
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" th:href="@{https://fonts.googleapis.com}">
-    <link rel="preconnect" th:href="@{https://fonts.gstatic.com}" crossorigin>
-    <link th:href="@{https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Inter:wght@700;800&display=swap}" rel="stylesheet">
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/static/css/fontawesome-free-5.15.3-web/css/all.min.css}">
 
-    <!-- Icon Font Stylesheet -->
-    <link th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css}" rel="stylesheet">
-    <link th:href="@{https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css}" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/static/css/style-form.css}">
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/static/css/style.css}">
 
-    <!-- Bootstrap Stylesheet -->
-    <link th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css}" rel="stylesheet">
-
+    <!-- Google font -->
+    <link rel="preconnect" type="text/css" media="all" th:href="@{https://fonts.gstatic.com}">
+    <link th:href="@{https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Roboto+Condensed:wght@300&display=swap}" rel="stylesheet">
 </head>
 
 <!--- Navbar --->
-<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-dark bg-dark" data-th-fragment="navbar">
-    <div class="container-fluid">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <a class="navbar-brand" href="#"><i class="fas fa-home"></i> FaceUTEQ</a>
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Test1</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Test2</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Test3</a>
-                </li>
-            </ul>
-            <form class="d-flex">
-                <input class="form-control me-2" type="buscar" placeholder="Buscar" aria-label="Buscar">
-                <button class="btn btn-outline-light" type="submit">Buscar</button>
-                <a class="nav-link" href="#">Login</a>
-                <a class="nav-link" href="#">Registro</a>
-            </form>
+<body class="sb-nav-fixed" data-th-fragment="navbar">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <!-- Navbar Brand-->
+        <a class="navbar-brand ps-3 text-uppercase" th:href="@{/principal}">FaceUTEQ</a>
+        <!-- Sidebar Toggle-->
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+        <!-- Navbar-->
+        <ul class="navbar-nav ms-auto me-3 me-lg-4">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="#!">Mi perfil</a></li>
+                    <li><hr class="dropdown-divider" /></li>
+                    <li><a class="dropdown-item" th:href="@{/logout}">Cerrar sesi&oacute;n</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <div class="sb-sidenav-menu-heading text-uppercase" style="color: #D4D2D2;">Opciones generales</div>
+                        
+                        <a class="nav-link" th:href="@{/principal}">
+                            <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
+                            Inicio
+                        </a>
+                        <a class="nav-link" th:href="@{/publicaciones}">
+                            <div class="sb-nav-link-icon"><i class="fas fa-tasks"></i></div>
+                            Publicaciones
+                        </a>
+                        <a class="nav-link" th:href="@{/amigos}">
+                            <div class="sb-nav-link-icon"><i class="fas fa-tasks"></i></div>
+                            Mis amigos
+                        </a>
+                        <a class="nav-link" th:href="@{/buscaramigos}">
+                            <div class="sb-nav-link-icon"><i class="fas fa-tasks"></i></div>
+                            Buscar amigos
+                        </a>
+                        <!--<a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#diagnostico1" aria-expanded="false" aria-controls="diagnostico1">
+                            <div class="sb-nav-link-icon"><i class="fas fa-clipboard-list"></i></div>
+                            Diagn&oacute;sticos
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="diagnostico1" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+                            <a class="nav-link" href="<?php echo base_url() ?>secretariatrabajo/diagnostico1">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tasks"></i></div>
+                                Diagn&oacute;stico 1
+                            </a>
+                            <a class="nav-link" href="<?php echo base_url() ?>secretariatrabajo/diagnostico2">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tasks"></i></div>
+                                NOM-035
+                            </a>
+                        </div>-->
+
+                        <!-- Termina panel de usuario -->
+
+
+                    </div>
+                </div>
+            </nav>
         </div>
-    </div>
-</nav>
-<!-- Navbar -->
+
+        <!-- Navbar -->

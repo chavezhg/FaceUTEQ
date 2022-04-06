@@ -43,4 +43,9 @@ public class UsuarioService implements UserDetailsService{
         User user = new User(usuario.getEmailUsua(), usuario.getPassUsua(), roles);
         return user;
     }
+    
+    @Transactional(readOnly = true)
+    public Usuario findByEmailUsua(String email){
+        return interfazUsuario.findByEmailUsua(email);
+    }
 }

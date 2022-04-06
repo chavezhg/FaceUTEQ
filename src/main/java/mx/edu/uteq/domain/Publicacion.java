@@ -35,7 +35,9 @@ public class Publicacion implements Serializable {
     @ManyToOne
     @JoinColumn(name = "id_usua", nullable = false)
     public Usuario usuario;
-    @Column(name = "fa_publ", nullable = false)
+    @Column(name = "foto_publ", nullable = false)
+    public String fotoPubl;
+    @Column(name = "fa_publ", nullable = true)
     public Date faPubl;
     @Column(name = "fum_publ", nullable = true)
     public Date fumPubl;

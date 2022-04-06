@@ -5,9 +5,11 @@
  */
 package mx.edu.uteq.service;
 
+import java.io.IOException;
 import java.util.List;
 import mx.edu.uteq.domain.Publicacion;
 import mx.edu.uteq.domain.Usuario;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -15,8 +17,11 @@ import mx.edu.uteq.domain.Usuario;
  */
 public interface IPublicacionService {
     public List<Publicacion> getAll();
+    public List<Publicacion> getAllByUsuario(String email);
     public List<Publicacion> getAllDisponiblesByUsuario(String email);
+    void guardarImagen(String ruta, MultipartFile file, String nomArchivo) throws IOException;
     public void insert(Publicacion publicacion);
+    public void insertar(int idUsua, String descPubl, String url);
     public void delete(Publicacion publicacion);
     public Publicacion findById(Publicacion publicacion);
 }

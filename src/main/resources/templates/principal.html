@@ -9,59 +9,65 @@ and open the template in the editor.
         <title>FaceUTEQ</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- Custon Css -->
-        <link th:href="@{static/css/style.css}" rel="stylesheet">
-    </head>
-    <body>
         <!-- Header Start -->
     <head th:insert="common/header :: header"></head>
     <!-- Header End -->
+</head>
 
-    <!-- Navbar Start -->
-    <head th:insert="common/header :: navbar"></head>
-    <!-- Navbar End -->
+<!-- Navbar Start -->
+<head th:insert="common/header :: navbar"></head>
+<!-- Navbar End -->
 
-    <!-- All content -->
+<!-- All content -->
 
-    <div class="container mt-2" align="center">
-        <div class="row">
-            <div class="col-3"></div>
-            <div class="col-6">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-1">
-                                
-                            </div>
-                            <div class="col-11">
-                                <input type="text" class="form-control" placeholder="Escribe que estás pensando...">
-                            </div>
-                        </div>
-                    </div>
+<div id="layoutSidenav_content" style="background-color: #f5f7fb;">
+    <main>
+        <div class="container-fluid px-4">
+
+
+
+
+
+
+
+
+
+            <div class="card mt-3" data-th-each="p:${publicaciones}">
+                <img th:if="${p.fotoPubl != null}" th:src="@{${p.fotoPubl}}" class="card-img-top" style="width: 400px; height: 400px;">
+                <div class="card-body">
+                    <div class='float-start ms-2' data-th-text="${p.usuario.estudiante} == null ? ${p.usuario.profesor.n1Prof} + ' ' + ${p.usuario.profesor.apProf} : ${p.usuario.estudiante.n1Estu} + ' ' + ${p.usuario.estudiante.apEstu}"></div>
+                    <br>
+                    <div class='float-start ms-2' data-th-text="${p.usuario.estudiante} == null ? ${p.usuario.profesor.titulo.nomTitu} : ${p.usuario.estudiante.carrera.nomCarr}"></div>
+                    <br>
+                    <div class='float-start ms-2' data-th-text="${#dates.format(p.faPubl, 'dd-MM-yyyy')}"></div>
+                    <br>
+                    <div data-th-text="${p.descPubl}"></div>
                 </div>
-                <div class="card mt-3" data-th-each="p:${publicaciones}">
-                    <div class="card-title">
-                        <div class='float-start ms-2' data-th-text="${p.usuario.estudiante} == null ? ${p.usuario.profesor.n1Prof} + ' ' + ${p.usuario.profesor.apProf} : ${p.usuario.estudiante.n1Estu} + ' ' + ${p.usuario.estudiante.apEstu}"></div>
-                        <br>
-                        <div class='float-start ms-2' data-th-text="${p.usuario.estudiante} == null ? ${p.usuario.profesor.titulo.nomTitu} : ${p.usuario.estudiante.carrera.nomCarr}"></div>
-                        <br>
-                        <div class='float-start ms-2' data-th-text="${#dates.format(p.faPubl, 'dd-MM-yyyy')}"></div>
-                    </div>
-                    <div class="card-body">
-                        <div data-th-text="${p.descPubl}"></div>
-                    </div>
-                </div>
-                <br>
             </div>
-            <div class="col-3"></div>
+
+
+
+
+
+
+
+
+
         </div>
-    </div>
+    </main>
+</div>
+
+</div>
 
 
-    <!-- All content -->
+<!-- All content -->
 
-    <!-- Footer Start -->
-    <head th:insert="common/footer :: footer"></head>
-    <!-- Footer End -->
+<!-- Footer Start -->
+<head th:insert="common/footer :: footer"></head>
+<!-- Footer End -->
+
+<!-- Scripts Start -->
+<head th:insert="common/footer :: scripts"></head>
+<!-- Scripts End -->
 </body>
 </html>

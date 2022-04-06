@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>FaceUTEQ</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Header Start -->
+    <head th:insert="common/header :: header"></head>
+    <!-- Header End -->
+</head>
+
+<!-- Navbar Start -->
+<head th:insert="common/header :: navbar"></head>
+<!-- Navbar End -->
+
+<!-- All content -->
+
+<div id="layoutSidenav_content" style="background-color: #f5f7fb;">
+    <main>
+        <div class="container-fluid px-4">
+
+
+
+
+
+
+
+
+
+            <!--<h1 class="mt-4">Auditor&iacute;a profepa</h1>-->
+
+            <!--<div class="d-flex justify-content-center" style="margin-top: 20%;" id="loading">
+                    <div class="spinner-grow text-info" style="width: 6rem; height: 6rem;" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                    </div>
+            </div>-->
+
+            <div class="card" id="main">
+                <div class="card-body">
+                    
+                    <div class="card mt-3">
+                        <div class="card-title">
+                            Agregar publicación
+                        </div>
+                        <div class="card-body">
+                            <form method="post" th:action="@{/insert}" enctype="multipart/form-data" id="fileUploadForms" class="form-group">
+                                <input name="publicacion" type="text" class="form-control" placeholder="Ingresa tu publicación">
+                                <input name="file" type="file" multiple="true" data-min-file-count="0" data-theme="fas">
+                                <input type="submit" value="test">
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="card mt-3" data-th-each="p:${publicaciones}">
+                        <img th:if="${p.fotoPubl != null}" th:src="@{${p.fotoPubl}}" class="card-img-top" style="width: 400px; height: 400px;">
+                        <div class="card-body">
+                            <div class='float-start ms-2' data-th-text="${p.usuario.estudiante} == null ? ${p.usuario.profesor.n1Prof} + ' ' + ${p.usuario.profesor.apProf} : ${p.usuario.estudiante.n1Estu} + ' ' + ${p.usuario.estudiante.apEstu}"></div>
+                            <br>
+                            <div class='float-start ms-2' data-th-text="${p.usuario.estudiante} == null ? ${p.usuario.profesor.titulo.nomTitu} : ${p.usuario.estudiante.carrera.nomCarr}"></div>
+                            <br>
+                            <div class='float-start ms-2' data-th-text="${#dates.format(p.faPubl, 'dd-MM-yyyy')}"></div>
+                            <br>
+                            <div data-th-text="${p.descPubl}"></div>
+                        </div>
+                    </div>
+                    
+                    
+
+                </div>
+            </div>
+
+            
+
+
+
+
+
+
+
+        </div>
+    </main>
+</div>
+
+</div>
+
+
+<!-- All content -->
+
+<!-- Footer Start -->
+<head th:insert="common/footer :: footer"></head>
+<!-- Footer End -->
+
+<!-- Scripts Start -->
+<head th:insert="common/footer :: scripts"></head>
+<!-- Scripts End -->
+</body>
+</html>
