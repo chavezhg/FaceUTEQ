@@ -6,31 +6,30 @@
 package mx.edu.uteq.dao;
 
 import java.util.List;
-import mx.edu.uteq.domain.Amigo;
 import mx.edu.uteq.domain.Carrera;
+import mx.edu.uteq.domain.Comentario;
 import mx.edu.uteq.domain.Profesor;
 import mx.edu.uteq.domain.Publicacion;
-import mx.edu.uteq.domain.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author Ricardo
  */
 @Repository
-public interface IAmigo extends JpaRepository<Amigo, Long> {
+public interface IComentario extends JpaRepository<Comentario, Long>{
+    @Transactional
     @Modifying
-    @Query(value = "INSERT INTO amigo(idemi_usua, idrec_usua) VALUES(?1, ?2)", nativeQuery = true)
-    void save(int idEmi, int idRec);
+    @Query(value = "SELECT * FROM comentario\n"
+            + "WHERE id_publ = ?1", nativeQuery = true)
+    List<Comentario> findAllByPublicacion(int idPubl);
     
+    @Transactional
     @Modifying
-    @Query(value = "UPDATE amigo SET esta_amig = 2 WHERE idemi_usua = ?1 AND idrec_usua = ?2", nativeQuery = true)
-    void aceptarSolicitud(int idEmi, int idRec);
-    
-    @Modifying
-    @Query(value = "UPDATE amigo SET esta_amig = 3 WHERE idemi_usua = ?1 AND idrec_usua = ?2", nativeQuery = true)
-    void rechazarSolicitud(int idEmi, int idRec);
+    @Query(value = "INSERT INTO comentario(id_usua, id_publ, desc_come) VALUES(?1, ?2, ?3)", nativeQuery = true)
+    void save(String idUsua, String idPubl, String descCome);
 }

@@ -15,7 +15,9 @@ import mx.edu.uteq.domain.Usuario;
  */
 public interface IEstudianteService {
     public List<Estudiante> getAll();
-    public void insert(Estudiante estudiante);
+    public void actualizar(int carrUsua, String lnacUsua, String ecivilUsua, int idUsua);
+    public void insert(String carrUsua, String n1Usua, String n2Usua, String apUsua, String amUsua, String ecivilUsua, String fnacUsua, String lnacUsua);
+    public String getLastId();
     public void delete(Estudiante estudiante);
     public Estudiante findById(Estudiante estudiante);
 }

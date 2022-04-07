@@ -15,8 +15,9 @@ import mx.edu.uteq.domain.Usuario;
  */
 public interface IAmigoService {
     public List<Amigo> getAll();
-    public List<Amigo> getAllNotFriends(int idUsua);
-    public void insert(Amigo amigo);
+    public void insert(int idEmi, int idRec);
+    public void aceptarSolicitud(int idEmi, int idRec);
+    public void rechazarSolicitud(int idEmi, int idRec);
     public void delete(Amigo amigo);
     public Amigo findById(Amigo amigo);
 }

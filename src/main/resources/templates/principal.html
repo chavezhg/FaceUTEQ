@@ -27,23 +27,39 @@ and open the template in the editor.
 
 
 
-
-
-
-
-
-            <div class="card mt-3" data-th-each="p:${publicaciones}">
-                <img th:if="${p.fotoPubl != null}" th:src="@{${p.fotoPubl}}" class="card-img-top" style="width: 400px; height: 400px;">
-                <div class="card-body">
-                    <div class='float-start ms-2' data-th-text="${p.usuario.estudiante} == null ? ${p.usuario.profesor.n1Prof} + ' ' + ${p.usuario.profesor.apProf} : ${p.usuario.estudiante.n1Estu} + ' ' + ${p.usuario.estudiante.apEstu}"></div>
-                    <br>
-                    <div class='float-start ms-2' data-th-text="${p.usuario.estudiante} == null ? ${p.usuario.profesor.titulo.nomTitu} : ${p.usuario.estudiante.carrera.nomCarr}"></div>
-                    <br>
-                    <div class='float-start ms-2' data-th-text="${#dates.format(p.faPubl, 'dd-MM-yyyy')}"></div>
-                    <br>
-                    <div data-th-text="${p.descPubl}"></div>
+            <div class="row">
+                <div class="col-3"></div>
+                <div class="col-5">
+                    <div class="card mt-3" data-th-each="p:${publicaciones}">
+                        <div align="center" class="mt-1">
+                            <img th:if="${p.fotoPubl != null}" th:src="@{${p.fotoPubl}}" class="card-img-top" style="width: 400px; height: 400px;">
+                        </div>
+                        <div class="card-body">
+                            <div class='float-start ms-2' data-th-text="${p.usuario.estudiante} == null ? ${p.usuario.profesor.n1Prof} + ' ' + ${p.usuario.profesor.apProf} : ${p.usuario.estudiante.n1Estu} + ' ' + ${p.usuario.estudiante.apEstu}"></div>
+                            <br>
+                            <div class='float-start ms-2' data-th-text="${p.usuario.estudiante} == null ? ${p.usuario.profesor.carrera.nomCarr} : ${p.usuario.estudiante.carrera.nomCarr}"></div>
+                            <br>
+                            <div class='float-start ms-2' data-th-text="${#dates.format(p.faPubl, 'dd-MM-yyyy')}"></div>
+                            <br>
+                            <div data-th-text="${p.descPubl}"></div>
+                        </div>
+                        <div class="card-footer">
+                            <form method="post" th:action="@{/insertcomentario}" class="form-group">
+                                <input name="comentario" type="text" class="form-control" placeholder="Ingresa tu comentario">
+                                <input name="publicacion" type="hidden" th:value="${p.idPubl}">
+                                <input type="submit" class="btn btn-primary form-control" value="Enviar">
+                            </form>
+                            <br>
+                            <li th:each="c : ${comentarios}" th:text="${c.usuario.estudiante} == null ? ${c.usuario.profesor.n1Prof} + ' ' + ${c.usuario.profesor.apProf} + ' dice: ' + ${c.descCome} : ${c.usuario.estudiante.n1Estu} + ' ' + ${c.usuario.estudiante.apEstu} + ' dice: ' + ${c.descCome}" th:if="${p.idPubl == c.publicacion.idPubl}"></li>
+                        </div>
+                    </div>
                 </div>
             </div>
+
+
+
+
+
 
 
 

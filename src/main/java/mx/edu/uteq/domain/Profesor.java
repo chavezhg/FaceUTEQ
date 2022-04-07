@@ -30,8 +30,8 @@ public class Profesor implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idProf;
     @ManyToOne
-    @JoinColumn(name = "id_titu", nullable = false)
-    public Titulo titulo;
+    @JoinColumn(name = "id_carr", nullable = false)
+    public Carrera carrera;
     @Column(name = "n1_prof", nullable = false)
     private String n1Prof;
     @Column(name = "n2_prof", nullable = false)

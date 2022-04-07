@@ -9,9 +9,12 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
+import mx.edu.uteq.domain.Comentario;
 import mx.edu.uteq.domain.Publicacion;
 import mx.edu.uteq.domain.Usuario;
+import mx.edu.uteq.service.IComentarioService;
 import mx.edu.uteq.service.IPublicacionService;
+import mx.edu.uteq.service.IUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,7 +23,11 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  *
@@ -32,6 +39,12 @@ public class PrincipalController {
 
     @Autowired
     IPublicacionService publicacionService;
+    
+    @Autowired
+    IComentarioService comentarioService;
+    
+    @Autowired
+    IUsuarioService usuarioService;
     
     @GetMapping("/logout")
     public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
@@ -46,8 +59,18 @@ public class PrincipalController {
     public String page(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         List<Publicacion> publicaciones = publicacionService.getAllDisponiblesByUsuario(authentication.getName());
+        List<Comentario> comentarios = comentarioService.getAll();
         model.addAttribute("publicaciones", publicaciones);
+        model.addAttribute("comentarios", comentarios);
         return "principal";
     }
+    
+    @PostMapping(path = "/insertcomentario")
+    @ResponseBody
+    public ModelAndView insertcomentario(@RequestParam("comentario") String descCome, @RequestParam("publicacion") String idPubl) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        comentarioService.insert(usuarioService.findByEmailUsua(authentication.getName()).getIdUsua().toString(), idPubl, descCome);
 
+        return new ModelAndView("redirect:/principal");
+    }
 }

@@ -22,36 +22,66 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class UsuarioServiceImp implements IUsuarioService{
     @Autowired
-    private IUsuario publicacionDao;
+    private IUsuario usuarioDao;
     
     @Override
     @Transactional(readOnly = true)
     public List<Usuario> getAll() {
-        return (List<Usuario>) publicacionDao.findAll();
+        return (List<Usuario>) usuarioDao.findAll();
+    }
+    
+    @Override
+    @Transactional(readOnly = true)
+    public List<Usuario> getAllNotFriends(int idUsua) {
+        return (List<Usuario>) usuarioDao.findAllNotFriends(idUsua);
+    }
+    
+    @Override
+    @Transactional(readOnly = true)
+    public List<Usuario> getAllFriends(int idUsua) {
+        return (List<Usuario>) usuarioDao.findAllFriends(idUsua);
+    }
+    
+    @Override
+    @Transactional(readOnly = true)
+    public List<Usuario> getAllRequests(int idUsua) {
+        return (List<Usuario>) usuarioDao.findAllRequests(idUsua);
     }
 
     @Override
     @Transactional
-    public void insert(Usuario usuario) {
-        publicacionDao.save(usuario);
+    public void insert(String idProf, String idEstu, String idRol, String emailUsua, String passUsua, String estaUsua) {
+        usuarioDao.save(idProf, idEstu, idRol, emailUsua, passUsua, estaUsua);
+    }
+    
+    @Override
+    @Transactional
+    public String getLastId() {
+        return usuarioDao.getLastId();
     }
 
     @Override
     @Transactional
     public void delete(Usuario usuario) {
-        publicacionDao.delete(usuario);
+        usuarioDao.delete(usuario);
     }
 
     @Override
     @Transactional(readOnly = true)
     public Usuario findById(Usuario usuario) {
-        return publicacionDao.findById(usuario.getIdUsua()).orElse(null);
+        return usuarioDao.findById(usuario.getIdUsua()).orElse(null);
     }
     
     @Override
     @Transactional(readOnly = true)
     public Usuario findByEmailUsua(String email){
-        return publicacionDao.findByEmailUsua(email);
+        return usuarioDao.findByEmailUsua(email);
+    }
+    
+    @Override
+    @Transactional
+    public void activarCuenta(String idUsua){
+        usuarioDao.activarCuenta(idUsua);
     }
     
 }

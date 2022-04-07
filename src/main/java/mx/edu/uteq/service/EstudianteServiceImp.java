@@ -21,29 +21,41 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class EstudianteServiceImp implements IEstudianteService{
     @Autowired
-    private IEstudiante publicacionDao;
+    private IEstudiante estudianteDao;
     @Override
     @Transactional(readOnly = true)
     public List<Estudiante> getAll() {
-        return (List<Estudiante>) publicacionDao.findAll();
+        return (List<Estudiante>) estudianteDao.findAll();
+    }
+    
+    @Override
+    @Transactional
+    public void actualizar(int carrUsua, String lnacUsua, String ecivilUsua, int idUsua) {
+        estudianteDao.actualizar(carrUsua, lnacUsua, ecivilUsua, idUsua);
     }
 
     @Override
     @Transactional
-    public void insert(Estudiante publicacion) {
-        publicacionDao.save(publicacion);
+    public void insert(String carrUsua, String n1Usua, String n2Usua, String apUsua, String amUsua, String ecivilUsua, String fnacUsua, String lnacUsua) {
+        estudianteDao.insert(carrUsua, n1Usua, n2Usua, apUsua, amUsua, ecivilUsua, fnacUsua, lnacUsua);
+    }
+    
+    @Override
+    @Transactional
+    public String getLastId() {
+        return estudianteDao.getLastId();
     }
 
     @Override
     @Transactional
     public void delete(Estudiante publicacion) {
-        publicacionDao.delete(publicacion);
+        estudianteDao.delete(publicacion);
     }
 
     @Override
     @Transactional(readOnly = true)
     public Estudiante findById(Estudiante publicacion) {
-        return publicacionDao.findById(publicacion.getIdEstu()).orElse(null);
+        return estudianteDao.findById(publicacion.getIdEstu()).orElse(null);
     }
     
 }

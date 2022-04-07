@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Iniciar sesión - FaceUTEQ</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" type="text/css" media="all" th:href="@{/static/css/styles.css}">
+
+        <!-- Fontawesome CSS -->
+        <link rel="stylesheet" type="text/css" media="all" th:href="@{/static/css/fontawesome-free-5.15.3-web/css/all.min.css}">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" type="text/css" media="all" th:href="@{/static/css/style-form.css}">
+        <link rel="stylesheet" type="text/css" media="all" th:href="@{/static/css/style.css}">
+
+        <!-- Google font -->
+        <link rel="preconnect" type="text/css" media="all" th:href="@{https://fonts.gstatic.com}">
+        <link th:href="@{https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Roboto+Condensed:wght@300&display=swap}" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container-fluid" style="margin-left: -12px;">
+            <div class="row">
+                <div class="col-xl-3 col-lg-3"></div>
+                <div class="col-xl-6 col-lg-4 col-md-12" style="margin-left: 10px;">
+                    <div class="card shadow-lg p-3 mb-5 bg-white">
+                        <h4>Sistema de autentificaci&oacute;n</h4>
+                        <br>
+                        <div class="card-header">
+                            Registrese utilizando su correo electr&oacute;nico
+                        </div>
+                        <div class="card-body">
+                            <div id="alerta"></div>
+                            <form method="post" th:action="@{/registerusuario}">
+                                <div class="form-row">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="col-md-12 mb-3">
+                                                <label for="n1Usua">Primer nombre <font color="red">*</font></label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text" id="inputGroupPrepend" style="height: 38px; width: 42px;">
+                                                            <i class="far fa-address-card"></i>
+                                                        </span>
+                                                    </div>
+                                                    <input name="n1Usua" type="text" class="form-control" id="n1Usua" placeholder="Ingresa tu primer nombre" aria-describedby="inputGroupPrepend" minlength="4" required>
+                                                    <div class="invalid-feedback">Campo requerido.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="col-md-12 mb-3">
+                                                <label for="n2Usua">Segundo nombre (opcional) </label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text" id="inputGroupPrepend" style="height: 38px; width: 42px;">
+                                                            <i class="far fa-address-card"></i>
+                                                        </span>
+                                                    </div>
+                                                    <input name="n2Usua" type="text" class="form-control" id="n2Usua" placeholder="Ingresa tu segundo nombre (opcional)" aria-describedby="inputGroupPrepend">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="col-md-12 mb-3">
+                                                <label for="apUsua">Apellido paterno <font color="red">*</font></label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text" id="inputGroupPrepend" style="height: 38px; width: 42px;">
+                                                            <i class="far fa-address-card"></i>
+                                                        </span>
+                                                    </div>
+                                                    <input name="apUsua" type="text" class="form-control" id="apUsua" placeholder="Ingresa tu primer apellido" aria-describedby="inputGroupPrepend" minlength="4" required>
+                                                    <div class="invalid-feedback">Campo requerido.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="col-md-12 mb-3">
+                                                <label for="amUsua">Apellido materno <font color="red">*</font></label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text" id="inputGroupPrepend" style="height: 38px; width: 42px;">
+                                                            <i class="far fa-address-card"></i>
+                                                        </span>
+                                                    </div>
+                                                    <input name="amUsua" type="text" class="form-control" id="amUsua" placeholder="Ingresa tu segundo apellido" aria-describedby="inputGroupPrepend" minlength="4" required>
+                                                    <div class="invalid-feedback">Campo requerido.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="col-md-12 mb-3">
+                                                <label for="ecivilUsua">Estado civil <font color="red">*</font></label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text" id="inputGroupPrepend" style="height: 38px; width: 42px;">
+                                                            <i class="far fa-address-card"></i>
+                                                        </span>
+                                                    </div>
+                                                    <select class="form-select" aria-label=".form-select-lg example" name="ecivilUsua">
+                                                        <option value="1">Soltero</option>
+                                                        <option value="2">Casado</option>
+                                                        <option value="3">Divorciado</option>
+                                                        <option value="4">Viudo</option>
+                                                    </select>
+                                                    <div class="invalid-feedback">Campo requerido.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="col-md-12 mb-3">
+                                                <label for="fnacUsua">Fecha de nacimiento <font color="red">*</font></label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text" id="inputGroupPrepend" style="height: 38px; width: 42px;">
+                                                            <i class="far fa-address-card"></i>
+                                                        </span>
+                                                    </div>
+                                                    <input name="fnacUsua" type="date" class="form-control" id="fnacUsua" placeholder="Ingresa tu fecha de nacimiento" aria-describedby="inputGroupPrepend" minlength="4" required>
+                                                    <div class="invalid-feedback">Campo requerido.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="col-md-12 mb-3">
+                                                <label for="lnacUsua">Lugar de nacimiento <font color="red">*</font></label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text" id="inputGroupPrepend" style="height: 38px; width: 42px;">
+                                                            <i class="far fa-address-card"></i>
+                                                        </span>
+                                                    </div>
+                                                    <input name="lnacUsua" type="text" class="form-control" id="lnacUsua" placeholder="Lugar de nacimiento" aria-describedby="inputGroupPrepend" minlength="4" required>
+                                                    <div class="invalid-feedback">Campo requerido.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="col-md-12 mb-3">
+                                                <label for="emailUsua">Correo electr&oacute;nico <font color="red">*</font></label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text" id="inputGroupPrepend" style="height: 38px; width: 42px;">
+                                                            <i class="fas fa-at"></i>
+                                                        </span>
+                                                    </div>
+                                                    <input name="emailUsua" type="email" class="form-control" id="emailUsua" placeholder="Ingresa tu correo electr&oacute;nico" aria-describedby="inputGroupPrepend" required>
+                                                    <div class="invalid-feedback">Ingresa un correo electr&oacute;nico v&aacute;lido.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="col-md-12 mb-3">
+                                                <label for="passwordUsua">Contrase&ntilde;a <font color="red">*</font></label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text" id="inputGroupPrepend" style="height: 38px; width: 42px;">
+                                                            <i class="fas fa-lock"></i>
+                                                        </span>
+                                                    </div>
+                                                    <input name="passwordUsua" type="password" class="form-control" id="passwordUsua" placeholder="Ingresa tu contrase&ntilde;a" aria-describedby="inputGroupPrepend" minlength="4" required>
+                                                    <div class="invalid-feedback">Campo requerido.</div>   
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="col-md-12 mb-3">
+                                                <label for="passwordUsua">Carrera que estudias <font color="red">*</font></label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text" id="inputGroupPrepend" style="height: 38px; width: 42px;">
+                                                            <a href="../../java/mx/edu/uteq/controller/UsuarioController.java"></a>
+                                                            <i class="fas fa-lock"></i>
+                                                        </span>
+                                                    </div>
+                                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="carrUsua">
+                                                        <option th:each="p : ${carreras}" th:value="${p.idCarr}" th:text="${p.nomCarr}">
+
+                                                        </option>
+                                                    </select>
+                                                    <div class="invalid-feedback">Campo requerido.</div>   
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="6">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="isProfesor" name="isProfesor">
+                                                <label class="form-check-label" for="flexCheckDefault">
+                                                    ¿Eres profesor?
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div align="center">
+                                    <button class="btn btn-success" type="submit">
+                                        Registrarte
+                                    </button>
+                                    <div id="spinner" style="display: none;">
+                                        <br>
+                                        <div class="spinner-border" role="status"></div>
+                                    </div>
+                                </div>
+                                <br>
+                                <a th:href="@{/login}">Ya tengo una cuenta</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- JQUERY -->
+        <script th:src="@{/static/jquery-3.6.0/jquery.min.js}"></script>
+
+        <!-- Bootstrap JS -->
+        <script th:src="@{/static/css/js/scripts.js}"></script>
+    </body>
+</html>

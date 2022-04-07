@@ -27,17 +27,23 @@ public class AmigoServiceImp implements IAmigoService{
     public List<Amigo> getAll() {
         return (List<Amigo>) amigoDao.findAll();
     }
-    
-    @Override
-    @Transactional(readOnly = true)
-    public List<Amigo> getAllNotFriends(int idUsua) {
-        return (List<Amigo>) amigoDao.getAllNotFriends(idUsua);
-    }
 
     @Override
     @Transactional
-    public void insert(Amigo amigo) {
-        amigoDao.save(amigo);
+    public void insert(int idEmi, int idRec) {
+        amigoDao.save(idEmi, idRec);
+    }
+    
+    @Override
+    @Transactional
+    public void aceptarSolicitud(int idEmi, int idRec) {
+        amigoDao.aceptarSolicitud(idEmi, idRec);
+    }
+    
+    @Override
+    @Transactional
+    public void rechazarSolicitud(int idEmi, int idRec) {
+        amigoDao.rechazarSolicitud(idEmi, idRec);
     }
 
     @Override

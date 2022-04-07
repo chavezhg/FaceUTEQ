@@ -27,11 +27,23 @@ public class ProfesorServiceImp implements IProfesorService{
     public List<Profesor> getAll() {
         return (List<Profesor>) profesorDao.findAll();
     }
+    
+    @Override
+    @Transactional
+    public void actualizar(int carrUsua, String lnacUsua, String ecivilUsua, int idUsua) {
+        profesorDao.actualizar(carrUsua, lnacUsua, ecivilUsua, idUsua);
+    }
 
     @Override
     @Transactional
-    public void insert(Profesor profesor) {
-        profesorDao.save(profesor);
+    public void insert(String carrUsua, String n1Usua, String n2Usua, String apUsua, String amUsua, String ecivilUsua, String fnacUsua, String lnacUsua) {
+        profesorDao.insertar(carrUsua, n1Usua, n2Usua, apUsua, amUsua, ecivilUsua, fnacUsua, lnacUsua);
+    }
+    
+    @Override
+    @Transactional
+    public String getLastId() {
+        return profesorDao.getLastId();
     }
 
     @Override

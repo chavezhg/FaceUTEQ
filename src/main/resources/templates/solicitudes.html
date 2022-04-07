@@ -40,20 +40,24 @@ and open the template in the editor.
                     </div>
             </div>-->
             <div class="row row-cols-1 row-cols-md-4 g-6">
-                <div data-th-each="u:${usersNotFriends}">
+                <div data-th-each="u:${usersRequests}">
                     <div class="card" id="main" >
                         <div class="card-body">
                             <div class="card mt-3">
                                 <div class="card-body">
                                     <div data-th-text="${u.estudiante} == null ? ${u.profesor.n1Prof} + ' ' + ${u.profesor.apProf} : ${u.estudiante.n1Estu} + ' ' + ${u.estudiante.apEstu}"></div>
                                     <br>
-                                    <div class='float-start ms-2' data-th-text="${u.estudiante} == null ? ${u.profesor.carrera.nomCarr} : ${u.estudiante.carrera.nomCarr}"></div>
+                                    <div class='float-start ms-2' data-th-text="${u.estudiante} == null ? ${u.profesor.titulo.nomTitu} : ${u.estudiante.carrera.nomCarr}"></div>
                                     <br>
                                 </div>
                                 <div class="card-footer" align="center">
-                                    <form method="post" th:action="@{/insertamigo}">
-                                        <input type="hidden" id="id" name="id" th:value="${u.idUsua}">
-                                        <input class="btn btn-success" type='submit' value="Agregar amigo">
+                                    <form method="post" th:action="@{/aceptarsolicitud}">
+                                        <input type="hidden" id="id" name="idaceptar" th:value="${u.idUsua}">
+                                        <input class="btn btn-success" type='submit' value="Aceptar solicitud">
+                                    </form>
+                                    <form method="post" th:action="@{/rechazarsolicitud}">
+                                        <input type="hidden" id="id" name="idrechazar" th:value="${u.idUsua}">
+                                        <input class="btn btn-danger" type='submit' value="Rechazar solicitud">
                                     </form>
                                 </div>
                             </div>

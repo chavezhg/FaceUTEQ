@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>FaceUTEQ</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Header Start -->
+    <head th:insert="common/header :: header"></head>
+    <!-- Header End -->
+</head>
+
+<!-- Navbar Start -->
+<head th:insert="common/header :: navbar"></head>
+<!-- Navbar End -->
+
+<!-- All content -->
+
+<div id="layoutSidenav_content" style="background-color: #f5f7fb;">
+    <main>
+        <div class="container-fluid px-4">
+
+
+
+
+
+
+
+
+
+            <h1 class="mt-4">Mi perfil</h1>
+            <form method="post" th:action="@{/updatepreferences}">
+                <div class="form-row">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="col-md-12 mb-3">
+                                <label for="publi_priv">Privacidad de publicaciones <font color="red">*</font></label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="inputGroupPrepend" style="height: 38px; width: 42px;">
+                                            <i class="far fa-address-card"></i>
+                                        </span>
+                                    </div>
+                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="publi_priv">
+                                        <option th:selected="${privacidad.publiPriv == 'PUBLICO'}" value="1">Público</option>
+                                        <option th:selected="${privacidad.publiPriv == 'PRIVADO'}" value="2">Privado</option>
+                                        <option th:selected="${privacidad.publiPriv == 'AMIGOS'}" value="3">Amigos</option>
+                                    </select>
+                                    <div class="invalid-feedback">Campo requerido.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="submit" class="btn btn-primary" value="Actualizar preferencias">
+                </div>
+            </form>
+
+            <br>
+
+            <form method="post" th:action="@{/updateprofile}">
+                <div class="form-row">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="col-md-12 mb-3">
+                                <label for="carrUsua">Carrera <font color="red">*</font></label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="inputGroupPrepend" style="height: 38px; width: 42px;">
+                                            <i class="far fa-address-card"></i>
+                                        </span>
+                                    </div>
+                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="carrUsua">
+                                        <option th:each="p : ${carreras}" th:value="${p.idCarr}" th:text="${p.nomCarr}">
+                                            
+                                        </option>
+                                    </select>
+                                    <div class="invalid-feedback">Campo requerido.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="col-md-12 mb-3">
+                                <label for="lnacUsua">Lugar de nacimiento <font color="red">*</font></label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="inputGroupPrepend" style="height: 38px; width: 42px;">
+                                            <i class="far fa-address-card"></i>
+                                        </span>
+                                    </div>
+                                    <input type="text" clasS="form-control" th:value="${privacidad.usuario.estudiante} != null ? ${privacidad.usuario.estudiante.lnacEstu} : ${privacidad.usuario.profesor.lnacProf}" placeholder="Escribe tu lugar de nacimiento" name='lnacUsua'>
+                                    <div class="invalid-feedback">Campo requerido.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="col-md-12 mb-3">
+                                <label for="ecivilUsua">Situación sentimental <font color="red">*</font></label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="inputGroupPrepend" style="height: 38px; width: 42px;">
+                                            <i class="far fa-address-card"></i>
+                                        </span>
+                                    </div>
+                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="ecivilUsua">
+                                        <option th:selected="${privacidad.usuario.estudiante} != null ? ${privacidad.usuario.estudiante.ecivilEstu == 'SOLTERO'} : ${privacidad.usuario.profesor.ecivilProf == 'SOLTERO'}" value="1">Soltero</option>
+                                        <option th:selected="${privacidad.usuario.estudiante} != null ? ${privacidad.usuario.estudiante.ecivilEstu == 'CASADO'} : ${privacidad.usuario.profesor.ecivilProf == 'CASADO'}" value="2">Casado</option>
+                                        <option th:selected="${privacidad.usuario.estudiante} != null ? ${privacidad.usuario.estudiante.ecivilEstu == 'DIVORCIADO'} : ${privacidad.usuario.profesor.ecivilProf == 'DIVORCIADO'}" value="3">Divorciado</option>
+                                        <option th:selected="${privacidad.usuario.estudiante} != null ? ${privacidad.usuario.estudiante.ecivilEstu == 'VIUDO'} : ${privacidad.usuario.profesor.ecivilProf == 'VIUDO'}" value="4">Viudo</option>
+                                    </select>
+                                    <div class="invalid-feedback">Campo requerido.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="submit" class="btn btn-primary" value="Actualizar información">
+                </div>
+        </div>
+
+        </div>
+        </form>
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+        </div>
+    </main>
+</div>
+
+</div>
+
+
+<!-- All content -->
+
+<!-- Footer Start -->
+<head th:insert="common/footer :: footer"></head>
+<!-- Footer End -->
+
+<!-- Scripts Start -->
+<head th:insert="common/footer :: scripts"></head>
+<!-- Scripts End -->
+</body>
+</html>

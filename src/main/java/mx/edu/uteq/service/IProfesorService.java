@@ -15,7 +15,9 @@ import mx.edu.uteq.domain.Usuario;
  */
 public interface IProfesorService {
     public List<Profesor> getAll();
-    public void insert(Profesor profesor);
+    public void actualizar(int carrUsua, String lnacUsua, String ecivilUsua, int idUsua);
+    public void insert(String carrUsua, String n1Usua, String n2Usua, String apUsua, String amUsua, String ecivilUsua, String fnacUsua, String lnacUsua);
+    public String getLastId();
     public void delete(Profesor profesor);
     public Profesor findById(Profesor profesor);
 }
