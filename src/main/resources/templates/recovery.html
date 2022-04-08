@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Recuperar contraseña - FaceUTEQ</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" type="text/css" media="all" th:href="@{/static/css/styles.css}">
+
+        <!-- Fontawesome CSS -->
+        <link rel="stylesheet" type="text/css" media="all" th:href="@{/static/css/fontawesome-free-5.15.3-web/css/all.min.css}">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" type="text/css" media="all" th:href="@{/static/css/style-form.css}">
+        <link rel="stylesheet" type="text/css" media="all" th:href="@{/static/css/style.css}">
+
+        <!-- Google font -->
+        <link rel="preconnect" type="text/css" media="all" th:href="@{https://fonts.gstatic.com}">
+        <link th:href="@{https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Roboto+Condensed:wght@300&display=swap}" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container-fluid" style="margin-left: -12px;">
+            <div class="row">
+                <div class="col-xl-3 col-lg-3"></div>
+                <div class="col-xl-6 col-lg-4 col-md-12" style="margin-left: 10px;">
+                    <div class="card shadow-lg p-3 mb-5 bg-white mt-5">
+                        <h4>Sistema de autentificaci&oacute;n</h4>
+                        <br>
+                        <div class="card-header">
+                            Ingresa el correo electrónico de tu cuenta a recuperar
+                        </div>
+                        <div class="card-body">
+                            <div id="alerta"></div>
+                            <form method="post" th:action="@{/recoverypassword}">
+                                <div class="form-row">
+                                    <div class="row">
+                                        <div class="col-3"></div>
+                                        <div class="col-6">
+                                            <div class="col-md-12 mb-3">
+                                                <label for="emailUsua">Correo electr&oacute;nico <font color="red">*</font></label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text" id="inputGroupPrepend" style="height: 38px; width: 42px;">
+                                                            <i class="fas fa-at"></i>
+                                                        </span>
+                                                    </div>
+                                                    <input name="emailUsua" type="email" class="form-control" id="emailUsua" placeholder="Ingresa tu correo electr&oacute;nico" aria-describedby="inputGroupPrepend" required>
+                                                    <div class="invalid-feedback">Ingresa un correo electr&oacute;nico v&aacute;lido.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div align="center">
+                                    <button class="btn btn-success" type="submit">
+                                        Recuperar
+                                    </button>
+                                    <div id="spinner" style="display: none;">
+                                        <br>
+                                        <div class="spinner-border" role="status"></div>
+                                    </div>
+                                </div>
+                                <br>
+                                <a th:href="@{/login}">Ya tengo una cuenta</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- JQUERY -->
+        <script th:src="@{/static/jquery-3.6.0/jquery.min.js}"></script>
+
+        <!-- Bootstrap JS -->
+        <script th:src="@{/static/css/js/scripts.js}"></script>
+    </body>
+</html>

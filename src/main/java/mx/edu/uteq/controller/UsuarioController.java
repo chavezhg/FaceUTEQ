@@ -10,8 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import mx.edu.uteq.dao.ICarrera;
 import mx.edu.uteq.dao.IEstudiante;
+import mx.edu.uteq.dao.IToken;
 import mx.edu.uteq.domain.Carrera;
 import mx.edu.uteq.domain.Privacidad;
+import mx.edu.uteq.domain.Token;
 import mx.edu.uteq.domain.Usuario;
 import mx.edu.uteq.service.IPrivacidadService;
 import mx.edu.uteq.service.IProfesorService;
@@ -19,6 +21,7 @@ import mx.edu.uteq.service.IPublicacionService;
 import mx.edu.uteq.service.IUsuarioService;
 import mx.edu.uteq.service.SendEmail;
 import static mx.edu.uteq.util.EncriptarPassword.encriptarPassword;
+import mx.edu.uteq.util.GenerateTokens;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -56,6 +59,9 @@ public class UsuarioController {
 
     @Autowired
     SendEmail correo;
+    
+    @Autowired
+    IToken tokenService;
 
     @GetMapping({"/", "/login"})
     public String page(Model model) {
@@ -67,6 +73,41 @@ public class UsuarioController {
         List<Carrera> carreras = carreraService.findAll();
         model.addAttribute("carreras", carreras);
         return "register";
+    }
+    
+    @GetMapping("/recovery")
+    public String recovery(Model model) {
+        return "recovery";
+    }
+    
+    @PostMapping(path = "/recoverypassword")
+    @ResponseBody
+    public ModelAndView recoverypassword(@RequestParam("emailUsua") String emailUsua) {
+        Usuario usuario = usuarioService.findUsuaByEmail(emailUsua);
+        if(usuario != null){
+            String token = GenerateTokens.generateRandomString(20);
+            usuarioService.recoverypassword(usuario.getIdUsua().toString(), token);
+            correo.sendEmail(emailUsua, "Recuperación de contraseña FaceUTEQ", "Gracias por utilizar el sistema de recuperación de contraseña. entra al siguiente enlace para recuperar tu contraseña: http://localhost:8080/changepassword?token="+token);
+        }
+        return new ModelAndView("redirect:/recovery");
+    }
+    
+    @RequestMapping("/changepassword")
+    public String changepassword(@RequestParam(name = "token") String token, Model model) {
+        Token tok = tokenService.findByToken(token);
+        if(tok != null){
+            model.addAttribute("token", tok);
+            return("/cambiar");
+        }
+        return("/login");
+    }
+    
+    @PostMapping(path = "/renewpassword")
+    @ResponseBody
+    public ModelAndView registerusuario(@RequestParam("newpassword") String newpassword, @RequestParam("token") String token) {
+        Token tok = tokenService.findByToken(token);
+        usuarioService.changepassword(tok.getUsuario().getIdUsua().toString(), encriptarPassword(newpassword));
+        return new ModelAndView("redirect:/login");
     }
 
     @GetMapping("/perfil")

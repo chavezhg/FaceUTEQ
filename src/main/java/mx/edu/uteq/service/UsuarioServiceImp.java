@@ -79,9 +79,27 @@ public class UsuarioServiceImp implements IUsuarioService{
     }
     
     @Override
+    @Transactional(readOnly = true)
+    public Usuario findUsuaByEmail(String email){
+        return usuarioDao.findUsuaByEmail(email);
+    }
+    
+    @Override
     @Transactional
     public void activarCuenta(String idUsua){
         usuarioDao.activarCuenta(idUsua);
+    }
+    
+    @Override
+    @Transactional
+    public void recoverypassword(String idUsua, String token){
+        usuarioDao.recoverypassword(idUsua, token);
+    }
+    
+    @Override
+    @Transactional
+    public void changepassword(String idUsua, String token){
+        usuarioDao.changepassword(idUsua, token);
     }
     
 }

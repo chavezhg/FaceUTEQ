@@ -22,5 +22,8 @@ public interface IUsuarioService {
     public void delete(Usuario usuario);
     public Usuario findById(Usuario usuario);
     public Usuario findByEmailUsua(String email);
+    public Usuario findUsuaByEmail(String email);
     public void activarCuenta(String idUsua);
+    public void recoverypassword(String idUsua, String token);
+    public void changepassword(String idUsua, String newPassword);
 }

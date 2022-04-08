@@ -21,6 +21,9 @@ import org.springframework.transaction.annotation.Transactional;
 public interface IUsuario extends JpaRepository<Usuario, Long> {
 
     public Usuario findByEmailUsua(String emailUsua);
+    
+    @Query(value = "SELECT * FROM Usuario WHERE email_usua = ?1", nativeQuery = true)
+    Usuario findUsuaByEmail(String emailUsua);
 
     @Query(value = "SELECT * FROM usuario WHERE id_usua NOT IN(\n"
             + "    SELECT usuario.id_usua FROM usuario, amigo\n"
@@ -57,4 +60,14 @@ public interface IUsuario extends JpaRepository<Usuario, Long> {
     @Modifying
     @Query(value = "UPDATE usuario SET esta_usua = 1 WHERE id_usua = ?1", nativeQuery = true)
     void activarCuenta(String idUsua);
+    
+    @Transactional
+    @Modifying
+    @Query(value = "INSERT INTO Token(id_usua, desc_toke) VALUES(?1, ?2)", nativeQuery = true)
+    void recoverypassword(String idUsua, String token);
+    
+    @Transactional
+    @Modifying
+    @Query(value = "UPDATE usuario SET pass_usua = ?2 WHERE id_usua = ?1", nativeQuery = true)
+    void changepassword(String idUsua, String token);
 }
